@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 @RestController
-@RequestMapping(path = "/credentials", produces = "application/json",consumes = "application/json")
 @AllArgsConstructor
 public class CredentialsController implements CredentialsAPI {
     private final CredentialsService credentialsService;
-    @PostMapping
+
     @Override
     public ResponseEntity<ResponseDto> saveCredential(CredentialDto credentialDto) {
         credentialsService.saveCredential(credentialDto);

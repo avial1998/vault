@@ -2,7 +2,9 @@ package com.avinash.vault.mappers;
 
 import com.avinash.vault.dtos.CredentialDto;
 import com.avinash.vault.entities.Credential;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CredentialMapper {
     public Credential mapCredentialDtoToCredential(CredentialDto credentialDto) {
         Credential credential = new Credential();
