@@ -1,3 +1,5 @@
+server:
+    port: 8081
 spring:
   application:
     name: vault
@@ -13,4 +15,10 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/vault-realm
+          jwt-set-uri: http://localhost:8080/realms/vault-realm/protocol/openid-connect/certs
 

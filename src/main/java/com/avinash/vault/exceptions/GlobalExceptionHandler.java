@@ -19,5 +19,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ResponseDto response = new ResponseDto(HttpStatus.INTERNAL_SERVER_ERROR.toString(), "An unexpected error occurred: " + ex.getMessage());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
+    @ExceptionHandler(InvalidRequestDetailsException.class)
+    public ResponseEntity<ResponseDto> handleInvalidRequestDetailsException(InvalidRequestDetailsException ex) {
+        ResponseDto response = new ResponseDto(HttpStatus.UNAUTHORIZED.toString(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    }
 
 }
