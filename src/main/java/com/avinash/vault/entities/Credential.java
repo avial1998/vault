@@ -14,7 +14,7 @@ public class Credential {
     @Id
     private String domainName;
     @Id
-    private long vaultId;
+    private String vaultId;
     private String userName;
     private String userPassword;
 }

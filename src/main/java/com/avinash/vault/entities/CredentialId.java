@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class CredentialId implements Serializable {
     private String domainName;
-    private long vaultId;
+    private String vaultId;
 
     public CredentialId() {}
 
-    public CredentialId(String domainName, long vaultId) {
+    public CredentialId(String domainName, String vaultId) {
         this.domainName = domainName;
         this.vaultId = vaultId;
     }
@@ -19,7 +19,7 @@ public class CredentialId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CredentialId that = (CredentialId) o;
-        return vaultId == that.vaultId && Objects.equals(domainName, that.domainName);
+        return vaultId.equals(that.vaultId) && Objects.equals(domainName, that.domainName);
     }
 
     @Override
