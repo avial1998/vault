@@ -10,15 +10,26 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-       http.authorizeHttpRequests(auth->
-               auth.requestMatchers("/h2-console/**").permitAll()
-               .anyRequest().authenticated())
-               .csrf(csrf-> csrf.ignoringRequestMatchers("/h2-console/**"))
-               .headers(headers->headers.frameOptions(frame->frame.disable()))
-               .oauth2ResourceServer(oauth2->
-               oauth2.jwt(Customizer.withDefaults()));
-       return http.build();
-    }
+       public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+           http.authorizeHttpRequests(auth ->
+                   auth.requestMatchers(
+                       "/h2-console/**",
+                       "/swagger-ui/**",
+                       "/swagger-ui.html",
+                       "/v3/api-docs/**"
+                   ).permitAll()
+                   .anyRequest().authenticated())
+               .csrf(csrf -> csrf.ignoringRequestMatchers(
+                       "/h2-console/**",
+                       "/swagger-ui/**",
+                       "/swagger-ui.html",
+                       "/v3/api-docs/**"
+                   ))
+               .headers(headers -> headers.frameOptions(frame -> frame.disable()))
+               .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
+           return http.build();
+       }
+
 }
