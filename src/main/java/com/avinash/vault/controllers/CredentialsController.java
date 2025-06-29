@@ -5,6 +5,9 @@ import com.avinash.vault.dtos.CredentialDto;
 import com.avinash.vault.dtos.ResponseDto;
 import com.avinash.vault.exceptions.InvalidRequestDetailsException;
 import com.avinash.vault.services.CredentialsService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +23,7 @@ public class CredentialsController implements CredentialsAPI {
     private final CredentialsService credentialsService;
 
     @Override
-    public ResponseEntity<ResponseDto> saveCredential(Jwt jwt, CredentialDto credentialDto) {
+    public ResponseEntity<ResponseDto> saveCredential(Jwt jwt,@Valid CredentialDto credentialDto) {
         authenticateUserDetails(jwt, credentialDto.getVaultId());
         credentialsService.saveCredential(credentialDto);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -28,7 +31,7 @@ public class CredentialsController implements CredentialsAPI {
     }
 
     @Override
-    public ResponseEntity<ResponseDto> updateCredential(Jwt jwt,CredentialDto credentialDto) {
+    public ResponseEntity<ResponseDto> updateCredential(Jwt jwt,@Valid CredentialDto credentialDto) {
         authenticateUserDetails(jwt, credentialDto.getVaultId());
         credentialsService.updateCredential(credentialDto);
         return ResponseEntity.ok()
@@ -36,18 +39,18 @@ public class CredentialsController implements CredentialsAPI {
     }
 
     @Override
-    public ResponseEntity<CredentialDto> getCredential(Jwt jwt,String vaultId, String domainName) {
+    public ResponseEntity<CredentialDto> getCredential(Jwt jwt, String vaultId, String domainName) {
         authenticateUserDetails(jwt,vaultId);
         return ResponseEntity.ok(credentialsService.getCredential(vaultId, domainName));
     }
 
     @Override
-    public ResponseEntity<List<CredentialDto>> getAllCredentials(Jwt jwt,String vaultId) {
+    public ResponseEntity<List<CredentialDto>> getAllCredentials(Jwt jwt, String vaultId) {
         authenticateUserDetails(jwt,vaultId);
         return ResponseEntity.ok(credentialsService.getAllCredentials(vaultId));
     }
 
-    private static void authenticateUserDetails(Jwt jwt, String vaultId) {
+    private static void authenticateUserDetails(Jwt jwt,@NotBlank String vaultId) {
         String vaultIdInClaims=(String) jwt.getClaims().get("preferred_username");
         if(!vaultId.equals(vaultIdInClaims)){
             throw new InvalidRequestDetailsException("Invalid request details. User name in the credential does not match the authenticated user.");

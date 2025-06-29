@@ -22,8 +22,8 @@ public interface CredentialsAPI {
     ResponseEntity<ResponseDto> updateCredential(@AuthenticationPrincipal Jwt jwt,@Valid @RequestBody CredentialDto credentialDto);
 
     @GetMapping(path = "/{vaultId}/{domainName}")
-    ResponseEntity<CredentialDto> getCredential(@AuthenticationPrincipal Jwt jwt,@PathVariable String vaultId,@PathVariable String domainName);
+    ResponseEntity<CredentialDto> getCredential(@AuthenticationPrincipal Jwt jwt, @PathVariable String vaultId, @PathVariable String domainName);
 
     @GetMapping(path = "/{vaultId}")
-    ResponseEntity<List<CredentialDto>> getAllCredentials(@AuthenticationPrincipal Jwt jwt,@PathVariable String vaultId);
+    ResponseEntity<List<CredentialDto>> getAllCredentials(@AuthenticationPrincipal Jwt jwt, @PathVariable String vaultId);
 }
