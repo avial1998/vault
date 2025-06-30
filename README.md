@@ -7,7 +7,6 @@
 > Permission is hereby granted to any person viewing this code for personal, non-commercial educational purposes only.
 >
 > **You are NOT permitted to:**
-> - Modify, fork, or adapt any part of this codebase
 > - Use this code in any commercial product, service, or publication
 > - Redistribute or rehost the contents of this repository
 > - Use this repository or its contents to train AI models
