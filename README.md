@@ -1,5 +1,21 @@
 # Vault
 
+---
+
+> **Copyright © 2025 avial1998**
+>
+> Permission is hereby granted to any person viewing this code for personal, non-commercial educational purposes only.
+>
+> **You are NOT permitted to:**
+> - Modify, fork, or adapt any part of this codebase
+> - Use this code in any commercial product, service, or publication
+> - Redistribute or rehost the contents of this repository
+> - Use this repository or its contents to train AI models
+>
+> All rights are otherwise reserved. By accessing this repository, you agree to these terms.
+>
+> For other use cases, contact avial1998@gmail.com.
+
 Vault is a Spring Boot application that provides a secure API for managing credentials in a vault. It supports storing, retrieving, and managing sensitive information with encryption and robust security configurations.
 
 ## Features
