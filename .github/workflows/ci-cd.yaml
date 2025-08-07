@@ -21,16 +21,19 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
-
-      - name: SonarQube Scan
-        uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          projectBaseDir: .
-          projectKey: avinash-dev_vault
-          organization: avinash-dev
+      - name: Build and analyze
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Dummy: Add your SonarQube token in repo secrets
-          SONAR_HOST_URL: 'https://sonarcloud.io' # Dummy: Replace with your SonarQube server URL
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=avinash-dev_vault -Dsonar.organization=avinash-dev -Dsonar.host.url=https://sonarcloud.io
+#      - name: SonarQube Scan
+#        uses: SonarSource/sonarcloud-github-action@v2
+#        with:
+#          projectBaseDir: .
+#          projectKey: avinash-dev_vault
+#          organization: avinash-dev
+#        env:
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Dummy: Add your SonarQube token in repo secrets
+#          SONAR_HOST_URL: 'https://sonarcloud.io' # Dummy: Replace with your SonarQube server URL
 
 
       - name: Set up Docker Buildx
