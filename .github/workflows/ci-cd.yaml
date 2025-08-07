@@ -26,6 +26,8 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           projectBaseDir: .
+          projectKey: 'avinash-dev_vault' # Dummy: Replace with your SonarQube project key
+          organization: 'avinash-dev' # Dummy: Replace with your SonarQube organization
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} # Dummy: Add your SonarQube token in repo secrets
           SONAR_HOST_URL: 'https://sonarcloud.io' # Dummy: Replace with your SonarQube server URL
