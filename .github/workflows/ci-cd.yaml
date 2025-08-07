@@ -44,18 +44,4 @@ jobs:
           push: true
           tags: avial1998/vault:latest # Dummy: Replace with your Docker repo/image
 
-#  deploy:
-#    needs: build
-#    runs-on: self-hosted # Dummy: Replace with your deployment environment
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v4
-#
-#      - name: Pull latest Docker image
-#        run: docker pull avial1998/vault:latest # Dummy: Replace with your Docker repo/image
-#
-#      - name: Deploy to Kubernetes
-#        run: |
-#          kubectl apply -f deployment/vault-deployment.yaml
-#          kubectl apply -f deployment/vault-service.yaml
 
